@@ -83,9 +83,20 @@ body {
 .bomb-button.disabled:hover,
 .bomb-button:disabled:hover,
 .bomb-button[disabled]:hover {
-  transform: none !important;
-  background-color: #1a1a1a !important;
-  cursor: not-allowed !important;
+  aspect-ratio: 1;
+  width: 31px;
+  height: 31px;
+  font-size: 0.9rem;
+  border: 1px solid #646cff;
+  background-color: #1a1a1a;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+  transform: none;
 }
 
 .bomb-button:active:not(:disabled) {
