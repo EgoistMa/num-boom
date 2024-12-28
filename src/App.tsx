@@ -83,8 +83,9 @@ function App() {
         {bombs.map((number) => (
           <button
             key={number}
-            className={`bomb-button ${disabledNumbers.includes(number) ? 'disabled' : ''} 
-                      ${gameOver && number === targetBomb ? 'target' : ''}`}
+            className={`bomb-button 
+                      ${disabledNumbers.includes(number) ? 'disabled' : ''} 
+                      ${(gameOver && number === targetBomb) ? 'target' : ''}`}
             onClick={() => handleClick(number)}
             onContextMenu={(e) => handleRightClick(e, number)}
             disabled={disabledNumbers.includes(number) || gameOver || !targetBomb}

@@ -104,8 +104,15 @@ body {
 }
 
 .bomb-button.target {
-  background-color: #ff4444;
-  border-color: #cc0000;
+  background-color: #ff4444 !important;
+  border-color: #cc0000 !important;
+  color: white !important;
+}
+
+.bomb-button.disabled.target {
+  background-color: #ff4444 !important;
+  border-color: #cc0000 !important;
+  color: white !important;
 }
 
 h2, h3 {
