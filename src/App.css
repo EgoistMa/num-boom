@@ -70,11 +70,22 @@ body {
   background-color: #1a1a1a;
   color: white;
   cursor: pointer;
-  transition: all 0.1s;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: none;
+  transform: none;
+}
+
+.bomb-button:hover {
+  transform: none !important;
+  background-color: #1a1a1a !important;
+}
+
+.bomb-button:hover:not(:disabled) {
+  transform: none !important;
+  background-color: #1a1a1a !important;
 }
 
 .bomb-button:active:not(:disabled) {
