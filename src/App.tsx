@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [bombs, setBombs] = useState<number[]>(Array.from({ length: 100 }, (_, i) => i + 1))
+  const bombs = Array.from({ length: 100 }, (_, i) => i + 1)
   const [targetBomb, setTargetBomb] = useState<number | null>(null)
   const [disabledNumbers, setDisabledNumbers] = useState<number[]>([])
   const [gameOver, setGameOver] = useState(false)
