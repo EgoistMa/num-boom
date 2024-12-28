@@ -78,14 +78,14 @@ body {
   transform: none;
 }
 
-.bomb-button:hover {
+.bomb-button:hover,
+.bomb-button:hover:not(:disabled),
+.bomb-button.disabled:hover,
+.bomb-button:disabled:hover,
+.bomb-button[disabled]:hover {
   transform: none !important;
   background-color: #1a1a1a !important;
-}
-
-.bomb-button:hover:not(:disabled) {
-  transform: none !important;
-  background-color: #1a1a1a !important;
+  cursor: not-allowed !important;
 }
 
 .bomb-button:active:not(:disabled) {
@@ -93,11 +93,14 @@ body {
   transform: scale(0.95);
 }
 
-.bomb-button.disabled {
-  background-color: #666;
-  border-color: #444;
-  cursor: not-allowed;
-  color: #999;
+.bomb-button.disabled,
+.bomb-button:disabled,
+.bomb-button[disabled] {
+  background-color: #666 !important;
+  border-color: #444 !important;
+  cursor: not-allowed !important;
+  color: #999 !important;
+  transform: none !important;
 }
 
 .bomb-button.target {
