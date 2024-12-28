@@ -9,6 +9,13 @@ function App() {
   const [customNumber, setCustomNumber] = useState<string>('')
 
   const startGame = () => {
+    // 如果游戏正在进行，点击按钮相当于触发炸弹
+    if (targetBomb && !gameOver) {
+      setGameOver(true)
+      setDisabledNumbers(bombs)
+      return
+    }
+
     const number = customNumber ? parseInt(customNumber) : Math.floor(Math.random() * 100) + 1
     // 确保数字在1-100范围内
     if (number < 1 || number > 100 || isNaN(number)) {
@@ -38,6 +45,16 @@ function App() {
     }
   }
 
+  const handleRightClick = (e: React.MouseEvent, number: number) => {
+    e.preventDefault() // 阻止默认的右键菜单
+    if (!targetBomb || gameOver) { // 只在游戏未开始或结束后生效
+      setTargetBomb(number)
+      setGameOver(false)
+      setDisabledNumbers([])
+      setCustomNumber('')
+    }
+  }
+
   return (
     <div className="container">
       <div className="header">
@@ -52,11 +69,11 @@ function App() {
             disabled={targetBomb !== null && !gameOver}
           />
           <button onClick={startGame}>
-            {targetBomb ? '重新开始' : '开始游戏'}
+            {targetBomb ? (gameOver ? '重新开始' : '结束此轮') : '开始游戏'}
           </button>
         </div>
         <div className="game-hint">
-          {!targetBomb && <small>提示：输入1-100的数字，或留空随机生成</small>}
+          {!targetBomb && <small>提示：输入1-100的数字，或留空随机生成。右键点击数字可直接开始游戏。</small>}
         </div>
         {targetBomb && <h2>目标数字: {gameOver ? targetBomb : '???'}</h2>}
         {gameOver && <h3>游戏结束！你点到炸弹了！</h3>}
@@ -69,6 +86,7 @@ function App() {
             className={`bomb-button ${disabledNumbers.includes(number) ? 'disabled' : ''} 
                       ${gameOver && number === targetBomb ? 'target' : ''}`}
             onClick={() => handleClick(number)}
+            onContextMenu={(e) => handleRightClick(e, number)}
             disabled={disabledNumbers.includes(number) || gameOver || !targetBomb}
           >
             {number}
